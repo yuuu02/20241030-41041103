@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GSAP 動畫 - JS套件介紹</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .demo-box {
+            width: 100px;
+            height: 100px;
+            background: #3498db;
+            border-radius: 8px;
+            margin: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        .timeline-box {
+            width: 100px;
+            height: 100px;
+            background: #e74c3c;
+            border-radius: 8px;
+            position: relative;
+            margin: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        .demo-text {
+            font-size: 2rem;
+            color: #2c3e50;
+        }
+        .control-panel {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="jsweb.html">JS 套件介紹</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="aos.html">AOS動畫</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gsap.html">GSAP動畫</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="speech.html">語音合成</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="lottie.html">Lottie</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="chartjs.html">Chart.js</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="d3.html">D3.js</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="swiper.html">Swiper</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sweetalert.html">SweetAlert2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="lazyload.html">懶加載</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sortable.html">Sortable</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container my-5">
+        <h2 >GSAP 動畫效果</h2>
+        <div class="mb-4">
+            <a href="https://greensock.com/gsap/" target="_blank" class="btn btn-outline-primary">
+                GSAP官網
+            </a>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-md-8">
+                <h3>套件說明</h3>
+                <p>GSAP (GreenSock Animation Platform) 是一個專業級的 JavaScript 動畫庫，具有以下特點：</p>
+                <ul>
+                    <li>高效能的動畫引擎</li>
+                    <li>豐富的動畫效果和控制選項</li>
+                    <li>支援 CSS 屬性、SVG、Canvas 等多種動畫對象</li>
+                    <li>時間軸功能，可輕鬆創建複雜的動畫序列</li>
+                    <li>提供豐富的緩動函數</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3 class="mb-4">範例程式碼</h3>
+        <pre class="bg-light p-3 rounded mb-4">
+<!-- 引入 GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+<!-- 基本動畫 -->
+gsap.to(".box1", {
+    duration: 2,
+    x: 200,
+    rotation: 360,
+    scale: 1.5,
+    ease: "power2.inOut"
+});
+
+<!-- 時間軸動畫 -->
+const tl = gsap.timeline({repeat: -1});
+tl.to(".box2", {duration: 1, x: 200})
+  .to(".box2", {duration: 1, y: 200})
+  .to(".box2", {duration: 1, x: 0})
+  .to(".box2", {duration: 1, y: 0});
+
+<!-- 交錯動畫 -->
+gsap.to(".stagger-box", {
+    duration: 1,
+    y: 100,
+    opacity: 0,
+    stagger: 0.2,
+    ease: "back.in"
+});</pre>
+
+        <h3 class="mb-4">基本動畫展示</h3>
+        <div class="control-panel">
+            <button id="playBasic" class="btn btn-primary">播放動畫</button>
+            <button id="reverseBasic" class="btn btn-secondary">反向播放</button>
+        </div>
+        <div class="demo-box box1">基本</div>
+
+        <h3 class="mb-4">時間軸動畫展示</h3>
+        <div class="control-panel">
+            <button id="playTimeline" class="btn btn-primary">播放時間軸</button>
+            <button id="pauseTimeline" class="btn btn-secondary">暫停</button>
+            <button id="resumeTimeline" class="btn btn-info">繼續</button>
+            <button id="reverseTimeline" class="btn btn-warning">反向</button>
+        </div>
+        <div class="timeline-box box2">時間軸</div>
+
+        <h3 class="mb-4">文字動畫展示</h3>
+        <div class="control-panel">
+            <button id="playText" class="btn btn-primary">播放文字動畫</button>
+        </div>
+        <div class="demo-text" id="animatedText">Hello GSAP!</div>
+
+        <h3 class="mb-4">交錯動畫展示</h3>
+        <div class="control-panel">
+            <button id="playStagger" class="btn btn-primary">播放交錯動畫</button>
+        </div>
+        <div class="d-flex">
+            <div class="demo-box stagger-box">1</div>
+            <div class="demo-box stagger-box">2</div>
+            <div class="demo-box stagger-box">3</div>
+            <div class="demo-box stagger-box">4</div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+        // 基本動畫
+        const basicAnim = gsap.to(".box1", {
+            duration: 2,
+            x: 200,
+            rotation: 360,
+            scale: 1.5,
+            ease: "power2.inOut",
+            paused: true
+        });
+
+        document.getElementById('playBasic').onclick = () => basicAnim.play();
+        document.getElementById('reverseBasic').onclick = () => basicAnim.reverse();
+
+        // 時間軸動畫
+        const tl = gsap.timeline({paused: true});
+        tl.to(".box2", {duration: 1, x: 200})
+          .to(".box2", {duration: 1, y: 200})
+          .to(".box2", {duration: 1, x: 0})
+          .to(".box2", {duration: 1, y: 0});
+
+        document.getElementById('playTimeline').onclick = () => tl.play();
+        document.getElementById('pauseTimeline').onclick = () => tl.pause();
+        document.getElementById('resumeTimeline').onclick = () => tl.resume();
+        document.getElementById('reverseTimeline').onclick = () => tl.reverse();
+
+        // 文字動畫
+        const textAnim = gsap.timeline({paused: true});
+        textAnim.from("#animatedText", {
+            duration: 1,
+            opacity: 0,
+            y: 50,
+            ease: "back.out"
+        }).to("#animatedText", {
+            duration: 0.5,
+            scale: 1.2,
+            ease: "power2.inOut"
+        }).to("#animatedText", {
+            duration: 0.5,
+            scale: 1,
+            ease: "power2.inOut"
+        });
+
+        document.getElementById('playText').onclick = () => textAnim.restart();
+
+        // 交錯動畫
+        const staggerAnim = gsap.timeline({paused: true});
+        staggerAnim.from(".stagger-box", {
+            duration: 0.5,
+            y: -50,
+            opacity: 0,
+            stagger: 0.2,
+            ease: "back.out"
+        });
+
+        document.getElementById('playStagger').onclick = () => staggerAnim.restart();
+    </script>
+</body>
+</html>

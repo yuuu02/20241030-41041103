@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文字轉語音 - JS 套件介紹</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .demo-block {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .code-block {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="jsweb.html">JS 套件介紹</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="aos.html">AOS動畫</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gsap.html">GSAP動畫</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="speech.html">語音合成</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="lottie.html">Lottie</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="chartjs.html">Chart.js</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="d3.html">D3.js</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="swiper.html">Swiper</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sweetalert.html">SweetAlert2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="lazyload.html">懶加載</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sortable.html">Sortable</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <h2>Web Speech API - 文字轉語音</h2>
+        <p class="lead">使用 Web Speech API 將文字轉換為語音輸出。</p>
+        <div class="mb-4">
+            <a href="https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis" target="_blank" class="btn btn-outline-primary">
+                Web Speech API 官網
+            </a>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-8">
+                <h2>套件介紹</h2>
+                <p>Web Speech API 是瀏覽器內建的 API，無需額外安裝套件。它提供了：</p>
+                <ul>
+                    <li>文字轉語音（Text-to-Speech）功能</li>
+                    <li>多國語言支援</li>
+                    <li>可調整語速和音調</li>
+                    <li>支援暫停和繼續播放</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="demo-block">
+            <h3>基本使用範例</h3>
+            <div class="mb-3">
+                <label for="textToSpeak" class="form-label">輸入要朗讀的文字：</label>
+                <textarea class="form-control mb-2" id="textToSpeak" rows="3">這是一段測試文字，用於展示文字轉語音的功能。</textarea>
+                <select class="form-select mb-2" id="voiceSelect">
+                    <option value="">選擇語音</option>
+                </select>
+                <button class="btn btn-primary me-2" onclick="speak()">播放</button>
+                <button class="btn btn-secondary me-2" onclick="pause()">暫停</button>
+                <button class="btn btn-info" onclick="resume()">繼續</button>
+            </div>
+            
+            <div class="code-block">
+                <pre>
+// 初始化語音合成
+const synth = window.speechSynthesis;
+let utterance = null;
+
+function speak() {
+    // 創建語音實例
+    utterance = new SpeechSynthesisUtterance(textToSpeak.value);
+    
+    // 設定語音
+    const selectedVoice = voiceSelect.selectedOptions[0].value;
+    if (selectedVoice) {
+        utterance.voice = synth.getVoices().find(voice => voice.name === selectedVoice);
+    }
+    
+    // 開始播放
+    synth.speak(utterance);
+}</pre>
+            </div>
+        </div>
+
+        <div class="demo-block">
+            <h3>進階設定</h3>
+            <div class="mb-3">
+                <label for="rateRange" class="form-label">語速調整：</label>
+                <input type="range" class="form-range" id="rateRange" min="0.5" max="2" step="0.1" value="1">
+                <span id="rateValue">1.0</span>
+            </div>
+            <div class="mb-3">
+                <label for="pitchRange" class="form-label">音調調整：</label>
+                <input type="range" class="form-range" id="pitchRange" min="0.5" max="2" step="0.1" value="1">
+                <span id="pitchValue">1.0</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const synth = window.speechSynthesis;
+        const textToSpeak = document.getElementById('textToSpeak');
+        const voiceSelect = document.getElementById('voiceSelect');
+        const rateRange = document.getElementById('rateRange');
+        const pitchRange = document.getElementById('pitchRange');
+        const rateValue = document.getElementById('rateValue');
+        const pitchValue = document.getElementById('pitchValue');
+        let utterance = null;
+
+        // 載入可用的語音
+        function loadVoices() {
+            const voices = synth.getVoices();
+            voiceSelect.innerHTML = voices
+                .filter(voice => voice.lang.includes('zh') || voice.lang.includes('en'))
+                .map(voice => `<option value="${voice.name}">${voice.name} (${voice.lang})</option>`)
+                .join('');
+        }
+
+        // 監聽語音列表變化
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = loadVoices;
+        }
+
+        // 播放功能
+        function speak() {
+            if (synth.speaking) {
+                synth.cancel();
+            }
+            utterance = new SpeechSynthesisUtterance(textToSpeak.value);
+            const selectedVoice = voiceSelect.selectedOptions[0].value;
+            if (selectedVoice) {
+                utterance.voice = synth.getVoices().find(voice => voice.name === selectedVoice);
+            }
+            utterance.rate = parseFloat(rateRange.value);
+            utterance.pitch = parseFloat(pitchRange.value);
+            synth.speak(utterance);
+        }
+
+        // 暫停功能
+        function pause() {
+            if (synth.speaking) {
+                synth.pause();
+            }
+        }
+
+        // 繼續播放
+        function resume() {
+            if (synth.paused) {
+                synth.resume();
+            }
+        }
+
+        // 更新顯示值
+        rateRange.addEventListener('input', () => {
+            rateValue.textContent = rateRange.value;
+        });
+
+        pitchRange.addEventListener('input', () => {
+            pitchValue.textContent = pitchRange.value;
+        });
+    </script>
+</body>
+</html>

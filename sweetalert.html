@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SweetAlert2 套件介紹</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        pre {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow: auto;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            color: #fff;
+            background-color: #3085d6;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="jsweb.html">JS 套件介紹</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="aos.html">AOS動畫</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gsap.html">GSAP動畫</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="speech.html">語音合成</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="lottie.html">Lottie</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="chartjs.html">Chart.js</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="d3.html">D3.js</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="swiper.html">Swiper</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sweetalert.html">SweetAlert2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="lazyload.html">懶加載</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sortable.html">Sortable</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container my-5">
+        <h1>SweetAlert2 套件介紹</h1>
+        <div class="mb-4">
+            <a href="https://sweetalert2.github.io" target="_blank" class="btn btn-outline-primary">
+                SweetAlert2官網
+            </a>
+        </div>
+        <h2>範例程式碼</h2>
+        <p>以下是基本的 SweetAlert2 彈窗初始化程式碼：</p>
+        <pre>
+            &lt;!-- 引入 SweetAlert2 JavaScript --&gt;
+            &lt;script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"&gt;&lt;/script&gt;
+
+            &lt;!-- 彈窗觸發程式碼 --&gt;
+            &lt;script&gt;
+                Swal.fire({
+                    title: '恭喜！',
+                    text: '操作成功！',
+                    icon: 'success',
+                    confirmButtonText: '好的'
+                });
+            &lt;/script&gt;
+        </pre>
+
+        <h2>範例展示效果</h2>
+        <button onclick="showAlert()">點擊顯示彈窗</button>
+    </div>
+    <!-- 引入 SweetAlert2 JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- 初始化 SweetAlert2 彈窗 -->
+    <script>
+        function showAlert() {
+            Swal.fire({
+                title: '恭喜！',
+                text: '操作成功！',
+                icon: 'success',
+                confirmButtonText: '好的'
+            });
+        }
+    </script>
+
+</body>
+</html>

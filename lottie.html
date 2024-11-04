@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+
+        .intro-button {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-bottom: 30px;
+        }
+        .feature-list li {
+            margin-bottom: 8px;
+        }
+        .code-block {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .demo-section {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .demo-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .demo-item {
+            width: 200px;
+            text-align: center;
+        }
+        .animation-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        .control-panel {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+        button {
+            padding: 4px 8px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        pre {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="jsweb.html">JS 套件介紹</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="aos.html">AOS動畫</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gsap.html">GSAP動畫</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="speech.html">語音合成</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="lottie.html">Lottie</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="chartjs.html">Chart.js</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="d3.html">D3.js</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="swiper.html">Swiper</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sweetalert.html">SweetAlert2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="lazyload.html">懶加載</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sortable.html">Sortable</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container my-5">
+        <h2>Lottie 動畫效果展示</h2>
+        
+        <div class="mb-4">
+            <a href="https://airbnb.io/lottie/#/" target="_blank" class="btn btn-outline-primary">
+                Lottie.js 官網
+            </a>
+        </div>
+
+        <h2>套件說明</h2>
+        <p>
+            Lottie 是由 Airbnb 開發的開源動畫庫，能夠在網頁、iOS、Android 和 Windows 上渲染 Adobe After Effects 動畫。具有以下特點：
+        </p>
+
+        <ul class="feature-list">
+            <li>可直接使用 After Effects 製作的動畫，支援多種動畫效果</li>
+            <li>高效能的向量動畫渲染，檔案小且清晰度高</li>
+            <li>跨平台支援 (Web、iOS、Android、Windows)</li>
+            <li>支援程式控制播放、暫停、速度等動畫參數</li>
+            <li>豐富的動畫資源庫，可直接使用現成動畫</li>
+        </ul>
+
+        <div class="demo-section">
+            <h2>動畫展示</h2>
+            <div class="demo-container">
+                <div class="demo-item">
+                    <h3>載入動畫</h3>
+                    <div class="animation-container" id="loading-animation"></div>
+                    <div class="control-panel">
+                        <button onclick="playAnimation('loading')">播放</button>
+                        <button onclick="pauseAnimation('loading')">暫停</button>
+                    </div>
+                </div>
+                <div class="demo-item">
+                    <h3>成功動畫</h3>
+                    <div class="animation-container" id="success-animation"></div>
+                    <div class="control-panel">
+                        <button onclick="playAnimation('success')">播放</button>
+                        <button onclick="pauseAnimation('success')">暫停</button>
+                    </div>
+                </div>
+                <div class="demo-item">
+                    <h3>錯誤動畫</h3>
+                    <div class="animation-container" id="error-animation"></div>
+                    <div class="control-panel">
+                        <button onclick="playAnimation('error')">播放</button>
+                        <button onclick="pauseAnimation('error')">暫停</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2>使用方式</h2>
+        <div class="code-block">
+            <pre><code>// 1. 安裝套件
+    npm install lottie-web
+
+    // 2. 初始化動畫
+    const animation = lottie.loadAnimation({
+        container: document.getElementById('animation-container'),
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: 'path/to/animation.json'
+    });
+
+    // 3. 控制動畫
+    animation.play();     // 播放
+    animation.pause();    // 暫停
+    animation.stop();     // 停止
+    animation.setSpeed(2); // 設定速度</code></pre>
+        </div>
+    </div>
+    <script>
+        // 動畫實例儲存
+        const animations = {};
+
+        // 載入動畫
+        function loadAnimation(containerId, path) {
+            return lottie.loadAnimation({
+                container: document.getElementById(containerId),
+                renderer: 'svg',
+                loop: true,
+                autoplay: true,
+                path: path
+            });
+        }
+
+        // 初始化動畫
+        window.onload = function() {
+            // 使用範例 JSON 檔案
+            animations.loading = loadAnimation('loading-animation', 'https://assets4.lottiefiles.com/packages/lf20_fyqtse3p.json');
+            animations.success = loadAnimation('success-animation', 'https://assets9.lottiefiles.com/packages/lf20_uu0x8lqg.json');
+            animations.error = loadAnimation('error-animation', 'https://assets2.lottiefiles.com/packages/lf20_qjosmr4w.json');
+        };
+
+        // 播放動畫
+        function playAnimation(name) {
+            if (animations[name]) {
+                animations[name].play();
+            }
+        }
+
+        // 暫停動畫
+        function pauseAnimation(name) {
+            if (animations[name]) {
+                animations[name].pause();
+            }
+        }
+    </script>
+</body>
+</html>

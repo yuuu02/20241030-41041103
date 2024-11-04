@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文字轉語音 - JS 套件介紹</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .package-header {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .package-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .package-link {
+            color: #0066cc;
+            text-decoration: none;
+            display: block;
+            margin: 10px 0;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 20px 0 10px;
+            color: #444;
+        }
+        
+        .code-block {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        
+        .demo-container {
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .sortable-list {
+            flex: 1;
+            background: #f8f8f8;
+            padding: 10px;
+            border-radius: 4px;
+            min-height: 300px;
+        }
+
+        .sortable-item {
+            background: white;
+            padding: 15px;
+            margin: 8px 0;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            cursor: move;
+            user-select: none;
+        }
+
+        .sortable-item.dragging {
+            opacity: 0.5;
+        }
+
+        .list-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        .task-priority {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 12px;
+            margin-left: 8px;
+        }
+
+        .high { background: #ffebee; color: #c62828; }
+        .medium { background: #fff3e0; color: #ef6c00; }
+        .low { background: #e8f5e9; color: #2e7d32; }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.1/Sortable.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="jsweb.html">JS 套件介紹</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="aos.html">AOS動畫</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gsap.html">GSAP動畫</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="speech.html">語音合成</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="lottie.html">Lottie</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="chartjs.html">Chart.js</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="d3.html">D3.js</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="swiper.html">Swiper</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sweetalert.html">SweetAlert2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="lazyload.html">懶加載</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sortable.html">Sortable</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <h2>Sortable.js套件</h2>
+        <div class="mb-4">
+            <a href="https://sortablejs.github.io/Sortable/" target="_blank" class="btn btn-outline-primary">
+                Sortable.js官網
+            </a>
+        </div>
+        <div class="section-title">範例程式碼</div>
+        <pre class="code-block">
+// HTML 結構
+&lt;div class="demo-container"&gt;
+    &lt;div class="sortable-list"&gt;
+        &lt;div class="list-title"&gt;待處理任務&lt;/div&gt;
+        &lt;div id="todo-list"&gt;
+            &lt;div class="sortable-item"&gt;
+                處理用戶回饋
+                &lt;span class="task-priority high"&gt;高優先級&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class="sortable-item"&gt;
+                更新文檔
+                &lt;span class="task-priority medium"&gt;中優先級&lt;/span&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="sortable-list"&gt;
+        &lt;div class="list-title"&gt;進行中任務&lt;/div&gt;
+        &lt;div id="inprogress-list"&gt;
+            &lt;div class="sortable-item"&gt;
+                開發新功能
+                &lt;span class="task-priority high"&gt;高優先級&lt;/span&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="sortable-list"&gt;
+        &lt;div class="list-title"&gt;已完成任務&lt;/div&gt;
+        &lt;div id="done-list"&gt;
+            &lt;div class="sortable-item"&gt;
+                修復錯誤
+                &lt;span class="task-priority low"&gt;低優先級&lt;/span&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+// JavaScript 初始化
+const lists = ['todo-list', 'inprogress-list', 'done-list'].map(id => {
+    return new Sortable(document.getElementById(id), {
+        animation: 150,
+        group: 'shared',
+        ghostClass: 'dragging',
+        onEnd: function(evt) {
+            // 在此處理拖放完成後的事件
+            console.log(
+                '項目從', evt.from.id,
+                '移動到', evt.to.id,
+                '位置從', evt.oldIndex,
+                '到', evt.newIndex
+            );
+        }
+    });
+});</pre>
+
+        <div class="section-title">展示效果</div>
+        <div class="demo-container">
+            <div class="sortable-list">
+                <div class="list-title">待處理任務</div>
+                <div id="todo-list">
+                    <div class="sortable-item">
+                        處理用戶回饋
+                        <span class="task-priority high">高優先級</span>
+                    </div>
+                    <div class="sortable-item">
+                        更新文檔
+                        <span class="task-priority medium">中優先級</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sortable-list">
+                <div class="list-title">進行中任務</div>
+                <div id="inprogress-list">
+                    <div class="sortable-item">
+                        開發新功能
+                        <span class="task-priority high">高優先級</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sortable-list">
+                <div class="list-title">已完成任務</div>
+                <div id="done-list">
+                    <div class="sortable-item">
+                        修復錯誤
+                        <span class="task-priority low">低優先級</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const lists = ['todo-list', 'inprogress-list', 'done-list'].map(id => {
+            return new Sortable(document.getElementById(id), {
+                animation: 150,
+                group: 'shared',
+                ghostClass: 'dragging',
+                onEnd: function(evt) {
+                    console.log(
+                        '項目從', evt.from.id,
+                        '移動到', evt.to.id,
+                        '位置從', evt.oldIndex,
+                        '到', evt.newIndex
+                    );
+                }
+            });
+        });
+    </script>
+</body>
+</html>

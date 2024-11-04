@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AOS 動畫 - JS 套件介紹</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <style>
+        .demo-block {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .code-block {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="jsweb.html">JS 套件介紹</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="aos.html">AOS動畫</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gsap.html">GSAP動畫</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="speech.html">語音合成</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="lottie.html">Lottie</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="chartjs.html">Chart.js</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="d3.html">D3.js</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="swiper.html">Swiper</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sweetalert.html">SweetAlert2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="lazyload.html">懶加載</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sortable.html">Sortable</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <h2>AOS (Animate On Scroll) 動畫套件</h2>
+        <p class="lead">AOS 是一個能讓元素在捲動時產生動畫效果的 JavaScript 套件。</p>
+        <div class="mb-4">
+            <a href="https://michalsnik.github.io/aos/" target="_blank" class="btn btn-outline-primary">
+                AOS官網
+            </a>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-8">
+                <h2>套件介紹</h2>
+                <p>AOS 提供了豐富的動畫效果，包括：</p>
+                <ul>
+                    <li>淡入淡出效果</li>
+                    <li>滑動效果</li>
+                    <li>翻轉效果</li>
+                    <li>縮放效果</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="demo-block">
+            <h3>基本使用方法</h3>
+            <div class="code-block">
+                <pre>
+// 1. 引入 CSS 和 JS
+&lt;link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"&gt;&lt;/script&gt;
+
+// 2. 初始化 AOS
+&lt;script&gt;
+    AOS.init();
+&lt;/script&gt;
+
+// 3. 在HTML元素上使用
+&lt;div data-aos="fade-up"&gt;內容&lt;/div&gt;</pre>
+            </div>
+        </div>
+
+        <div class="demo-block">
+            <h3>效果展示</h3>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card" data-aos="fade-up">
+                        <div class="card-body">
+                            <h5 class="card-title">淡入效果</h5>
+                            <p class="card-text">向上淡入效果展示</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card" data-aos="fade-left" data-aos-delay="100">
+                        <div class="card-body">
+                            <h5 class="card-title">左側滑入</h5>
+                            <p class="card-text">從左側滑入效果展示</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="card-body">
+                            <h5 class="card-title">縮放效果</h5>
+                            <p class="card-text">縮放動畫效果展示</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-block">
+            <h3>進階設定</h3>
+            <div class="code-block">
+                <pre>
+AOS.init({
+    duration: 1000,    // 動畫持續時間
+    delay: 100,        // 延遲時間
+    once: true,        // 動畫是否只執行一次
+    offset: 120,       // 觸發偏移
+    easing: 'ease-in-out-back'  // 緩動函數
+});</pre>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+</body>
+</html>

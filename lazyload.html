@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>懶加載 - JS 套件介紹</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .demo-block {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .code-block {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="jsweb.html">JS 套件介紹</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="aos.html">AOS動畫</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gsap.html">GSAP動畫</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="speech.html">語音合成</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="lottie.html">Lottie</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="chartjs.html">Chart.js</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="d3.html">D3.js</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="swiper.html">Swiper</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sweetalert.html">SweetAlert2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="lazyload.html">懶加載</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sortable.html">Sortable</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container my-5">
+        <h2>懶加載圖片示例</h2>
+        <div class="mb-4">
+            <a href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API" target="_blank" class="btn btn-outline-primary">
+                Intersection Observer API 官網
+            </a>
+        </div>
+        <div class="demo-block">
+            <h3>簡單範例</h3>
+            <p>以下是使用 Intersection Observer 進行懶加載的簡單範例：</p>
+            <pre><code>
+    const img = document.querySelector('.lazy');
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.src = entry.target.dataset.src;
+                observer.unobserve(entry.target);
+            }
+        });
+    });
+    observer.observe(img);
+            </code></pre>
+
+            <h3>效果展示</h3>
+            <div class="row" id="image-container">
+                <!-- 圖片將由 JavaScript 動態生成 -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 只在頁面載入時執行一次
+        document.addEventListener('DOMContentLoaded', function() {
+            // 使用 JavaScript 動態生成圖片
+            function generateImages(imageCount) {
+                const container = document.getElementById('image-container');
+                for (let i = 1; i <= imageCount; i++) {
+                    const col = document.createElement('div');
+                    col.className = 'col-4 mb-3';
+
+                    const img = document.createElement('img');
+                    img.dataset.src = `http://fakeimg.pl/300x250/?text=${i}`;
+                    img.className = 'lazy img-fluid';
+                    img.alt = `圖片 ${i}`;
+
+                    col.appendChild(img);
+                    container.appendChild(col);
+                }
+            }
+
+            // 初始化懶加載
+            function initLazyLoading() {
+                const images = document.querySelectorAll('.lazy');
+                const observer = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = img.dataset.src;
+                            observer.unobserve(img);
+                        }
+                    });
+                });
+                images.forEach(image => observer.observe(image));
+            }
+
+            // 生成 99 張圖片並初始化懶加載
+            generateImages(99);
+            initLazyLoading();
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
